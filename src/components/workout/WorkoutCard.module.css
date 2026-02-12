@@ -1,0 +1,504 @@
+/* ============================================
+   WorkoutCard Component Styles
+   Athletic Precision Design - データ駆動型の洗練されたカード
+   ============================================ */
+
+/* ============================================
+   カード本体
+   ============================================ */
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  
+  background: var(--color-bg-elevated);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-md);
+  
+  transition: all var(--transition-base);
+  animation: fadeSlideIn var(--transition-base) ease-out;
+  animation-fill-mode: both;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translateY(-2px);
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   ヘッダー
+   ============================================ */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.headerTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.bodyPartBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-md);
+  
+  background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-600));
+  border-radius: var(--radius-full);
+  
+  font-family: var(--font-display);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-inverse);
+  
+  box-shadow: 0 2px 8px rgba(8, 145, 194, 0.3);
+}
+
+.bodyPartEmoji {
+  font-size: 1.1em;
+}
+
+.bodyPartLabel {
+  letter-spacing: 0.02em;
+}
+
+.date {
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.exerciseName {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.02em;
+}
+
+/* ============================================
+   統計情報カード
+   ============================================ */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: var(--space-md);
+}
+
+.statCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+  
+  background: linear-gradient(135deg, var(--color-bg-secondary), var(--color-bg-primary));
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  
+  transition: all var(--transition-base);
+}
+
+.statCard:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+  border-color: var(--color-primary-300);
+}
+
+.statValue {
+  font-family: var(--font-display);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-600);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.statLabel {
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* ============================================
+   セクション
+   ============================================ */
+
+.setsSection,
+.notesSection,
+.gallerySection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.sectionTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  letter-spacing: 0.01em;
+}
+
+/* ============================================
+   セット詳細
+   ============================================ */
+
+.sets {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.setRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--color-primary-500);
+  
+  transition: all var(--transition-fast);
+}
+
+.setRow:hover {
+  background: var(--color-bg-primary);
+  border-left-color: var(--color-accent-500);
+  transform: translateX(4px);
+}
+
+.setNumber {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  background: var(--color-primary-500);
+  border-radius: var(--radius-md);
+  
+  font-family: var(--font-display);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-inverse);
+}
+
+.setDetails {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+}
+
+.setWeight {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.setSeparator {
+  color: var(--color-text-secondary);
+}
+
+.setReps {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+.setRM {
+  flex-shrink: 0;
+  padding: var(--space-xs) var(--space-sm);
+  
+  background: var(--color-accent-50);
+  border-radius: var(--radius-sm);
+  
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-accent-700);
+}
+
+/* ============================================
+   メモ
+   ============================================ */
+
+.notesText {
+  margin: 0;
+  padding: var(--space-md);
+  
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--color-accent-500);
+  
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-primary);
+  white-space: pre-wrap;
+}
+
+/* ============================================
+   画像ギャラリー
+   ============================================ */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: var(--space-md);
+}
+
+.thumbnail {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  
+  background: var(--color-bg-secondary);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.thumbnail:hover {
+  border-color: var(--color-primary-500);
+  transform: scale(1.05);
+  box-shadow: var(--shadow-lg);
+}
+
+.thumbnail:focus-visible {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+.thumbnail:active {
+  transform: scale(0.98);
+}
+
+.thumbnailImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ============================================
+   アクションボタン
+   ============================================ */
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.primaryActions {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.secondaryActions {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+/* ============================================
+   画像モーダル
+   ============================================ */
+
+.imageModal {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: var(--space-lg);
+}
+
+.imageModalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+}
+
+.imageCounter {
+  font-family: var(--font-display);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.imageModalContent {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-xl);
+}
+
+.fullImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-lg);
+}
+
+.imageModalNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+/* ============================================
+   レスポンシブ対応
+   ============================================ */
+
+@media (max-width: 640px) {
+  .card {
+    padding: var(--space-lg);
+    gap: var(--space-md);
+  }
+  
+  .exerciseName {
+    font-size: var(--font-size-lg);
+  }
+  
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .statValue {
+    font-size: var(--font-size-xl);
+  }
+  
+  .gallery {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: var(--space-sm);
+  }
+  
+  .actions {
+    gap: var(--space-sm);
+  }
+  
+  .primaryActions,
+  .secondaryActions {
+    flex-direction: column;
+  }
+  
+  .imageModalHeader {
+    padding: var(--space-sm);
+  }
+  
+  .imageCounter {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* ============================================
+   ダークモード対応
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+  .bodyPartBadge {
+    box-shadow: 0 2px 8px rgba(8, 145, 194, 0.5);
+  }
+  
+  .statCard {
+    background: linear-gradient(135deg, var(--color-bg-secondary), var(--color-neutral-800));
+  }
+  
+  .setRow {
+    background: var(--color-neutral-800);
+  }
+  
+  .setRow:hover {
+    background: var(--color-neutral-700);
+  }
+  
+  .notesText {
+    background: var(--color-neutral-800);
+  }
+  
+  .thumbnail {
+    background: var(--color-neutral-800);
+  }
+}
+
+/* ============================================
+   モーション削減対応
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .statCard,
+  .setRow,
+  .thumbnail {
+    animation: none;
+    transition: none;
+  }
+  
+  .card:hover,
+  .statCard:hover,
+  .setRow:hover,
+  .thumbnail:hover {
+    transform: none;
+  }
+}
+
+/* ============================================
+   印刷対応
+   ============================================ */
+
+@media print {
+  .card {
+    box-shadow: none;
+    border: 1px solid var(--color-border);
+    page-break-inside: avoid;
+  }
+  
+  .actions {
+    display: none;
+  }
+}

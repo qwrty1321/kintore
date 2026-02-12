@@ -1,0 +1,392 @@
+/* ============================================
+   Header - 固定ヘッダーコンポーネント
+   コンセプト: Athletic Precision
+   ============================================ */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  background: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-primary-500) 50%, var(--color-accent-600) 100%);
+  box-shadow: var(--shadow-lg);
+  z-index: var(--z-fixed);
+  backdrop-filter: blur(10px);
+}
+
+.container {
+  max-width: var(--container-max-width);
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+}
+
+/* ============================================
+   ロゴ
+   ============================================ */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  text-decoration: none;
+  color: var(--color-text-inverse);
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-extrabold);
+  font-size: var(--font-size-lg);
+  transition: transform var(--transition-fast);
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.logo:focus-visible {
+  outline: 2px solid var(--color-text-inverse);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+}
+
+.logoIcon {
+  font-size: var(--font-size-xl);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.logoText {
+  letter-spacing: -0.02em;
+}
+
+/* モバイルでロゴテキストを短縮 */
+@media (max-width: 480px) {
+  .logoText::after {
+    content: 'WT';
+  }
+  
+  .logoText {
+    font-size: 0;
+  }
+}
+
+/* ============================================
+   デスクトップナビゲーション
+   ============================================ */
+
+.desktopNav {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .desktopNav {
+    display: block;
+    flex: 1;
+  }
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm) var(--space-md);
+  color: var(--color-text-inverse);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.navLink::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(100%);
+  transition: transform var(--transition-base);
+}
+
+.navLink:hover::before {
+  transform: translateY(0);
+}
+
+.navLink:hover {
+  transform: translateY(-2px);
+}
+
+.navLink:focus-visible {
+  outline: 2px solid var(--color-text-inverse);
+  outline-offset: 2px;
+}
+
+.navLinkActive {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow-md);
+}
+
+.navIcon {
+  font-size: var(--font-size-lg);
+}
+
+.navLabel {
+  white-space: nowrap;
+}
+
+/* ============================================
+   モバイルメニューボタン
+   ============================================ */
+
+.menuButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: calc(var(--z-fixed) + 2);
+}
+
+@media (min-width: 768px) {
+  .menuButton {
+    display: none;
+  }
+}
+
+.menuButton:focus-visible {
+  outline: 2px solid var(--color-text-inverse);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.menuIcon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  position: relative;
+}
+
+.menuIcon span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--color-text-inverse);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-base);
+}
+
+.menuIconOpen span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menuIconOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.menuIconOpen span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ============================================
+   モバイルナビゲーション
+   ============================================ */
+
+.mobileNav {
+  position: fixed;
+  top: var(--header-height);
+  right: 0;
+  width: 280px;
+  max-width: 80vw;
+  height: calc(100vh - var(--header-height));
+  background: var(--color-bg-elevated);
+  box-shadow: var(--shadow-2xl);
+  transform: translateX(100%);
+  transition: transform var(--transition-base);
+  overflow-y: auto;
+  z-index: calc(var(--z-fixed) + 1);
+}
+
+.mobileNavOpen {
+  transform: translateX(0);
+}
+
+@media (min-width: 768px) {
+  .mobileNav {
+    display: none;
+  }
+}
+
+.mobileNavList {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.mobileNavLink {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-base);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+  position: relative;
+}
+
+.mobileNavLink::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 0;
+  background: var(--color-primary-500);
+  border-radius: var(--radius-full);
+  transition: height var(--transition-base);
+}
+
+.mobileNavLink:hover {
+  background: var(--color-bg-secondary);
+  transform: translateX(4px);
+}
+
+.mobileNavLink:hover::before {
+  height: 60%;
+}
+
+.mobileNavLink:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.mobileNavLinkActive {
+  background: var(--color-primary-50);
+  color: var(--color-primary-700);
+}
+
+.mobileNavLinkActive::before {
+  height: 80%;
+}
+
+.mobileNavIcon {
+  font-size: var(--font-size-xl);
+  flex-shrink: 0;
+}
+
+.mobileNavLabel {
+  flex: 1;
+}
+
+/* ============================================
+   オーバーレイ
+   ============================================ */
+
+.overlay {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color-bg-overlay);
+  z-index: var(--z-fixed);
+  animation: fadeIn var(--transition-base);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   アニメーション - スタガード表示
+   ============================================ */
+
+.mobileNavOpen .mobileNavLink {
+  animation: slideInRight var(--transition-base) ease-out;
+  animation-fill-mode: both;
+}
+
+.mobileNavOpen .mobileNavLink:nth-child(1) { animation-delay: 0ms; }
+.mobileNavOpen .mobileNavLink:nth-child(2) { animation-delay: 50ms; }
+.mobileNavOpen .mobileNavLink:nth-child(3) { animation-delay: 100ms; }
+.mobileNavOpen .mobileNavLink:nth-child(4) { animation-delay: 150ms; }
+.mobileNavOpen .mobileNavLink:nth-child(5) { animation-delay: 200ms; }
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ============================================
+   モーション削減対応
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .logo,
+  .navLink,
+  .mobileNavLink,
+  .menuIcon span,
+  .overlay {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .logoIcon {
+    animation: none;
+  }
+  
+  .navLink:hover,
+  .mobileNavLink:hover {
+    transform: none;
+  }
+}

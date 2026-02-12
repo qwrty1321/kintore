@@ -1,0 +1,67 @@
+/* ============================================
+   Component Showcase Styles
+   ============================================ */
+
+.showcase {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-2xl) var(--space-lg);
+}
+
+.title {
+  margin: 0 0 var(--space-2xl) 0;
+  font-family: var(--font-display);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+.section {
+  margin-bottom: var(--space-3xl);
+  padding: var(--space-xl);
+  background: var(--color-bg-elevated);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.sectionTitle {
+  margin: 0 0 var(--space-lg) 0;
+  font-family: var(--font-display);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: var(--space-sm);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.grid:last-child {
+  margin-bottom: 0;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+@media (max-width: 640px) {
+  .showcase {
+    padding: var(--space-lg) var(--space-md);
+  }
+  
+  .section {
+    padding: var(--space-lg);
+  }
+  
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

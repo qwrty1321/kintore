@@ -1,0 +1,261 @@
+/* ============================================
+   Toast Component Styles
+   Athletic Precision Design
+   ============================================ */
+
+/* トーストコンテナ */
+.container {
+  position: fixed;
+  z-index: var(--z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  pointer-events: none;
+}
+
+/* コンテナの位置 */
+.container.topRight {
+  top: 0;
+  right: 0;
+}
+
+.container.topLeft {
+  top: 0;
+  left: 0;
+}
+
+.container.bottomRight {
+  bottom: 0;
+  right: 0;
+}
+
+.container.bottomLeft {
+  bottom: 0;
+  left: 0;
+}
+
+.container.topCenter {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.container.bottomCenter {
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ============================================
+   トースト本体
+   ============================================ */
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  min-width: 300px;
+  max-width: 500px;
+  padding: var(--space-md) var(--space-lg);
+  
+  background: var(--color-bg-elevated);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  border-left: 4px solid;
+  
+  pointer-events: auto;
+  
+  /* アニメーション */
+  animation: slideIn var(--transition-base) ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.toast.exit {
+  animation: slideOut var(--transition-base) ease-in;
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+/* ============================================
+   タイプ別スタイル
+   ============================================ */
+
+.toast.success {
+  border-left-color: var(--color-success);
+}
+
+.toast.success .iconWrapper {
+  color: var(--color-success);
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.toast.error {
+  border-left-color: var(--color-error);
+}
+
+.toast.error .iconWrapper {
+  color: var(--color-error);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.toast.warning {
+  border-left-color: var(--color-warning);
+}
+
+.toast.warning .iconWrapper {
+  color: var(--color-warning);
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.toast.info {
+  border-left-color: var(--color-info);
+}
+
+.toast.info .iconWrapper {
+  color: var(--color-info);
+  background: rgba(59, 130, 246, 0.1);
+}
+
+/* ============================================
+   アイコン
+   ============================================ */
+
+.iconWrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+}
+
+/* ============================================
+   メッセージ
+   ============================================ */
+
+.message {
+  flex: 1;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-normal);
+}
+
+/* ============================================
+   閉じるボタン
+   ============================================ */
+
+.closeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+  
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.closeButton:hover {
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+}
+
+.closeButton:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.closeButton:active {
+  transform: scale(0.95);
+}
+
+/* ============================================
+   レスポンシブ対応
+   ============================================ */
+
+@media (max-width: 640px) {
+  .container {
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
+    padding: var(--space-sm);
+  }
+  
+  .toast {
+    min-width: auto;
+    max-width: none;
+    width: 100%;
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideOut {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+  }
+}
+
+/* ============================================
+   モーション削減対応
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .toast {
+    animation: none;
+  }
+  
+  .toast.exit {
+    animation: none;
+    opacity: 0;
+  }
+  
+  .closeButton:active {
+    transform: none;
+  }
+}

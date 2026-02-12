@@ -1,0 +1,159 @@
+/* ============================================
+   Select Component Styles
+   Athletic Precision Design
+   ============================================ */
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.wrapper.fullWidth {
+  width: 100%;
+}
+
+/* ============================================
+   ラベル
+   ============================================ */
+
+.label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-tight);
+}
+
+.required {
+  color: var(--color-error);
+  margin-left: var(--space-xs);
+}
+
+/* ============================================
+   セレクトフィールド
+   ============================================ */
+
+.selectWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.select {
+  /* レイアウト */
+  width: 100%;
+  min-height: 44px;
+  padding: var(--space-sm) calc(var(--space-md) + 24px + var(--space-sm)) var(--space-sm) var(--space-md);
+  
+  /* タイポグラフィ */
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  
+  /* 背景とボーダー */
+  background: var(--color-bg-elevated);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  
+  /* トランジション */
+  transition: all var(--transition-base);
+  
+  /* その他 */
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+}
+
+/* ============================================
+   状態
+   ============================================ */
+
+/* ホバー状態 */
+.select:hover:not(:disabled) {
+  border-color: var(--color-border-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+/* フォーカス状態 - アクセシビリティ */
+.select:focus {
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px rgba(8, 145, 194, 0.1);
+}
+
+/* エラー状態 */
+.select.error {
+  border-color: var(--color-error);
+}
+
+.select.error:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* 無効状態 */
+.select:disabled {
+  background: var(--color-bg-secondary);
+  color: var(--color-text-tertiary);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* ============================================
+   カスタム矢印アイコン
+   ============================================ */
+
+.icon {
+  position: absolute;
+  right: var(--space-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-secondary);
+  pointer-events: none;
+  transition: transform var(--transition-base);
+}
+
+.select:focus ~ .icon {
+  transform: rotate(180deg);
+}
+
+/* ============================================
+   ヘルプテキストとエラーメッセージ
+   ============================================ */
+
+.helperText,
+.errorText {
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  margin: 0;
+}
+
+.helperText {
+  color: var(--color-text-secondary);
+}
+
+.errorText {
+  color: var(--color-error);
+  font-weight: var(--font-weight-medium);
+}
+
+/* ============================================
+   モーション削減対応
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .select,
+  .icon {
+    transition: none;
+  }
+  
+  .select:focus ~ .icon {
+    transform: none;
+  }
+}

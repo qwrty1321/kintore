@@ -1,0 +1,256 @@
+/* ============================================
+   Button Component Styles
+   Athletic Precision Design
+   ============================================ */
+
+.button {
+  /* レイアウト */
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  
+  /* タイポグラフィ */
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-tight);
+  text-decoration: none;
+  white-space: nowrap;
+  
+  /* ボーダーとシャドウ */
+  border: 2px solid transparent;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  
+  /* トランジション */
+  transition: all var(--transition-base);
+  
+  /* インタラクション */
+  cursor: pointer;
+  user-select: none;
+  
+  /* アクセシビリティ: 最低44x44pxのタッチターゲット */
+  min-height: 44px;
+  min-width: 44px;
+  padding: var(--space-sm) var(--space-lg);
+}
+
+/* ============================================
+   バリアント
+   ============================================ */
+
+/* Primary - メインアクション */
+.button.primary {
+  background: linear-gradient(135deg, var(--color-primary-500) 0%, var(--color-primary-600) 100%);
+  color: var(--color-text-inverse);
+  border-color: transparent;
+}
+
+.button.primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-primary-700) 100%);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.button.primary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Secondary - 補助アクション */
+.button.secondary {
+  background: linear-gradient(135deg, var(--color-accent-500) 0%, var(--color-accent-600) 100%);
+  color: var(--color-text-inverse);
+  border-color: transparent;
+}
+
+.button.secondary:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--color-accent-600) 0%, var(--color-accent-700) 100%);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.button.secondary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Outline - 控えめなアクション */
+.button.outline {
+  background: transparent;
+  color: var(--color-text-primary);
+  border-color: var(--color-border);
+  box-shadow: none;
+}
+
+.button.outline:hover:not(:disabled) {
+  background: var(--color-bg-secondary);
+  border-color: var(--color-border-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.button.outline:active:not(:disabled) {
+  background: var(--color-bg-primary);
+}
+
+/* Ghost - 最小限のスタイル */
+.button.ghost {
+  background: transparent;
+  color: var(--color-text-secondary);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.button.ghost:hover:not(:disabled) {
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+}
+
+.button.ghost:active:not(:disabled) {
+  background: var(--color-bg-primary);
+}
+
+/* Danger - 破壊的アクション */
+.button.danger {
+  background: linear-gradient(135deg, var(--color-error) 0%, #dc2626 100%);
+  color: var(--color-text-inverse);
+  border-color: transparent;
+}
+
+.button.danger:hover:not(:disabled) {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.button.danger:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ============================================
+   サイズ
+   ============================================ */
+
+.button.sm {
+  min-height: 36px;
+  padding: var(--space-xs) var(--space-md);
+  font-size: var(--font-size-sm);
+}
+
+.button.md {
+  min-height: 44px;
+  padding: var(--space-sm) var(--space-lg);
+  font-size: var(--font-size-base);
+}
+
+.button.lg {
+  min-height: 52px;
+  padding: var(--space-md) var(--space-xl);
+  font-size: var(--font-size-lg);
+}
+
+/* ============================================
+   状態
+   ============================================ */
+
+/* フォーカス状態 - アクセシビリティ */
+.button:focus-visible {
+  outline: 3px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+/* 無効状態 */
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ローディング状態 */
+.button.loading {
+  cursor: wait;
+  color: transparent;
+}
+
+.button.loading .content {
+  visibility: hidden;
+}
+
+/* ============================================
+   レイアウト
+   ============================================ */
+
+.button.fullWidth {
+  width: 100%;
+}
+
+/* ============================================
+   アイコン
+   ============================================ */
+
+.leftIcon,
+.rightIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.leftIcon {
+  margin-left: calc(var(--space-xs) * -1);
+}
+
+.rightIcon {
+  margin-right: calc(var(--space-xs) * -1);
+}
+
+/* ============================================
+   スピナー
+   ============================================ */
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+}
+
+.spinner svg {
+  width: 100%;
+  height: 100%;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================================
+   モーション削減対応
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .button {
+    transition: none;
+  }
+  
+  .button:hover:not(:disabled) {
+    transform: none;
+  }
+  
+  .spinner svg {
+    animation: none;
+  }
+}

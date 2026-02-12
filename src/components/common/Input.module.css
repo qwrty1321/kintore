@@ -1,0 +1,197 @@
+/* ============================================
+   Input Component Styles
+   Athletic Precision Design
+   ============================================ */
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.wrapper.fullWidth {
+  width: 100%;
+}
+
+/* ============================================
+   ラベル
+   ============================================ */
+
+.label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-tight);
+}
+
+.required {
+  color: var(--color-error);
+  margin-left: var(--space-xs);
+}
+
+/* ============================================
+   入力フィールド
+   ============================================ */
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  /* レイアウト */
+  width: 100%;
+  min-height: 44px;
+  padding: var(--space-sm) var(--space-md);
+  
+  /* タイポグラフィ */
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-primary);
+  
+  /* 背景とボーダー */
+  background: var(--color-bg-elevated);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  
+  /* トランジション */
+  transition: all var(--transition-base);
+  
+  /* その他 */
+  outline: none;
+}
+
+/* アイコンがある場合のパディング調整 */
+.input.hasLeftIcon {
+  padding-left: calc(var(--space-md) + 24px + var(--space-sm));
+}
+
+.input.hasRightIcon {
+  padding-right: calc(var(--space-md) + 24px + var(--space-sm));
+}
+
+/* ============================================
+   状態
+   ============================================ */
+
+/* ホバー状態 */
+.input:hover:not(:disabled) {
+  border-color: var(--color-border-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+/* フォーカス状態 - アクセシビリティ */
+.input:focus {
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px rgba(8, 145, 194, 0.1);
+}
+
+/* エラー状態 */
+.input.error {
+  border-color: var(--color-error);
+}
+
+.input.error:focus {
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+/* 無効状態 */
+.input:disabled {
+  background: var(--color-bg-secondary);
+  color: var(--color-text-tertiary);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* プレースホルダー */
+.input::placeholder {
+  color: var(--color-text-tertiary);
+  opacity: 1;
+}
+
+/* ============================================
+   アイコン
+   ============================================ */
+
+.leftIcon,
+.rightIcon {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-secondary);
+  pointer-events: none;
+}
+
+.leftIcon {
+  left: var(--space-md);
+}
+
+.rightIcon {
+  right: var(--space-md);
+}
+
+/* ============================================
+   ヘルプテキストとエラーメッセージ
+   ============================================ */
+
+.helperText,
+.errorText {
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  margin: 0;
+}
+
+.helperText {
+  color: var(--color-text-secondary);
+}
+
+.errorText {
+  color: var(--color-error);
+  font-weight: var(--font-weight-medium);
+}
+
+/* ============================================
+   特殊な入力タイプ
+   ============================================ */
+
+/* 数値入力 */
+.input[type='number'] {
+  appearance: textfield;
+}
+
+.input[type='number']::-webkit-inner-spin-button,
+.input[type='number']::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+/* 日付入力 */
+.input[type='date'],
+.input[type='time'],
+.input[type='datetime-local'] {
+  appearance: none;
+}
+
+/* 検索入力 */
+.input[type='search']::-webkit-search-cancel-button {
+  appearance: none;
+}
+
+/* ============================================
+   モーション削減対応
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .input {
+    transition: none;
+  }
+}

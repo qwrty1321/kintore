@@ -1,0 +1,243 @@
+/* ============================================
+   Modal Component Styles
+   Athletic Precision Design
+   ============================================ */
+
+/* 背景オーバーレイ */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: var(--z-modal-backdrop);
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  
+  background: var(--color-bg-overlay);
+  backdrop-filter: blur(4px);
+  
+  /* アニメーション */
+  animation: fadeIn var(--transition-base) ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   モーダル本体
+   ============================================ */
+
+.modal {
+  position: relative;
+  z-index: var(--z-modal);
+  
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - var(--space-md) * 2);
+  
+  background: var(--color-bg-elevated);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-2xl);
+  
+  /* アニメーション */
+  animation: slideUp var(--transition-base) ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ============================================
+   サイズバリエーション
+   ============================================ */
+
+.modal.sm {
+  width: 100%;
+  max-width: 400px;
+}
+
+.modal.md {
+  width: 100%;
+  max-width: 600px;
+}
+
+.modal.lg {
+  width: 100%;
+  max-width: 900px;
+}
+
+.modal.full {
+  width: calc(100vw - var(--space-md) * 2);
+  height: calc(100vh - var(--space-md) * 2);
+  max-width: none;
+  max-height: none;
+}
+
+/* ============================================
+   ヘッダー
+   ============================================ */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-tight);
+}
+
+.closeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.closeButton:hover {
+  background: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+}
+
+.closeButton:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.closeButton:active {
+  transform: scale(0.95);
+}
+
+/* ============================================
+   コンテンツ
+   ============================================ */
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-lg);
+  
+  /* スクロールバーのスタイリング */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+.content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+}
+
+.content::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-hover);
+}
+
+/* ============================================
+   フッター
+   ============================================ */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+}
+
+/* ============================================
+   レスポンシブ対応
+   ============================================ */
+
+@media (max-width: 640px) {
+  .backdrop {
+    padding: 0;
+  }
+  
+  .modal {
+    width: 100%;
+    max-width: none;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+  
+  .modal.sm,
+  .modal.md,
+  .modal.lg {
+    width: 100%;
+    max-width: none;
+  }
+  
+  .header {
+    padding: var(--space-md);
+  }
+  
+  .title {
+    font-size: var(--font-size-lg);
+  }
+  
+  .content {
+    padding: var(--space-md);
+  }
+  
+  .footer {
+    padding: var(--space-md);
+  }
+}
+
+/* ============================================
+   モーション削減対応
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .modal {
+    animation: none;
+  }
+  
+  .closeButton:active {
+    transform: none;
+  }
+}

@@ -1,0 +1,191 @@
+/**
+ * 進捗ページのスタイル
+ * Athletic Precisionデザイン
+ */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+  padding: var(--space-xl);
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+/* ============================================
+   ヘッダー
+   ============================================ */
+
+.header {
+  text-align: center;
+  animation: fadeSlideIn 0.6s ease-out;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-sm) 0;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--color-primary-600), var(--color-accent-500));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+  margin: 0;
+  font-weight: var(--font-weight-normal);
+}
+
+/* ============================================
+   チャートコンテナ
+   ============================================ */
+
+.chartContainer {
+  animation: fadeSlideIn 0.6s ease-out 0.1s both;
+  min-height: 500px;
+}
+
+/* ============================================
+   統計カード
+   ============================================ */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-lg);
+  animation: fadeSlideIn 0.6s ease-out 0.2s both;
+}
+
+.statCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xl);
+  background: var(--color-bg-elevated);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+
+.statCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primary-500), var(--color-accent-500));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-slow);
+}
+
+.statCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.statCard:hover::before {
+  transform: scaleX(1);
+}
+
+.statValue {
+  font-family: var(--font-display);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-600);
+  line-height: 1;
+}
+
+.statLabel {
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+/* ============================================
+   アニメーション
+   ============================================ */
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   レスポンシブ対応
+   ============================================ */
+
+@media (max-width: 768px) {
+  .container {
+    padding: var(--space-lg);
+    gap: var(--space-xl);
+  }
+
+  .title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .subtitle {
+    font-size: var(--font-size-base);
+  }
+
+  .chartContainer {
+    min-height: 400px;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .statCard {
+    padding: var(--space-lg);
+  }
+
+  .statValue {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+/* ============================================
+   モーション削減対応
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .header,
+  .chartContainer,
+  .stats {
+    animation: none;
+  }
+
+  .statCard {
+    transition: none;
+  }
+
+  .statCard:hover {
+    transform: none;
+  }
+
+  .statCard::before {
+    transition: none;
+  }
+}
