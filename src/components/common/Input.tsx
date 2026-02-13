@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Input.module.css';
+import { cn } from '@/utils/cn';
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   /** ラベルテキスト */
@@ -48,39 +48,25 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const errorId = `${inputId}-error`;
     const helperId = `${inputId}-helper`;
 
-    const wrapperClassNames = [
-      styles.wrapper,
-      fullWidth && styles.fullWidth,
-      className,
-    ]
-      .filter(Boolean)
-      .join(' ');
-
-    const inputClassNames = [
-      styles.input,
-      error && styles.error,
-      leftIcon && styles.hasLeftIcon,
-      rightIcon && styles.hasRightIcon,
-    ]
-      .filter(Boolean)
-      .join(' ');
-
     return (
-      <div className={wrapperClassNames}>
+      <div className={cn('flex flex-col gap-1.5', fullWidth && 'w-full', className)}>
         {label && (
-          <label htmlFor={inputId} className={styles.label}>
+          <label 
+            htmlFor={inputId} 
+            className="text-sm font-medium text-gray-700"
+          >
             {label}
             {required && (
-              <span className={styles.required} aria-label="必須">
+              <span className="ml-1 text-red-500" aria-label="必須">
                 *
               </span>
             )}
           </label>
         )}
         
-        <div className={styles.inputWrapper}>
+        <div className="relative">
           {leftIcon && (
-            <span className={styles.leftIcon} aria-hidden="true">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" aria-hidden="true">
               {leftIcon}
             </span>
           )}
@@ -88,7 +74,14 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <input
             ref={ref}
             id={inputId}
-            className={inputClassNames}
+            className={cn(
+              'w-full px-3 py-2 border rounded-lg transition-colors',
+              'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent',
+              'disabled:bg-gray-100 disabled:cursor-not-allowed',
+              error ? 'border-red-500' : 'border-gray-300',
+              leftIcon && 'pl-10',
+              rightIcon && 'pr-10'
+            )}
             disabled={disabled}
             required={required}
             aria-invalid={error ? 'true' : 'false'}
@@ -99,20 +92,20 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           />
           
           {rightIcon && (
-            <span className={styles.rightIcon} aria-hidden="true">
+            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400" aria-hidden="true">
               {rightIcon}
             </span>
           )}
         </div>
 
         {error && (
-          <p id={errorId} className={styles.errorText} role="alert">
+          <p id={errorId} className="text-sm text-red-500" role="alert">
             {error}
           </p>
         )}
         
         {!error && helperText && (
-          <p id={helperId} className={styles.helperText}>
+          <p id={helperId} className="text-sm text-gray-500">
             {helperText}
           </p>
         )}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import styles from './Toast.module.css';
+import { cn } from '@/utils/cn';
 
 export type ToastType = 'success' | 'error' | 'warning' | 'info';
 
@@ -100,21 +100,33 @@ export const Toast: React.FC<ToastProps> = ({
     ),
   };
 
+  const typeStyles = {
+    success: 'bg-green-50 text-green-800 border-green-200',
+    error: 'bg-red-50 text-red-800 border-red-200',
+    warning: 'bg-yellow-50 text-yellow-800 border-yellow-200',
+    info: 'bg-blue-50 text-blue-800 border-blue-200'
+  };
+
   const toastContent = (
     <div
-      className={`${styles.toast} ${styles[type]} ${!isVisible ? styles.exit : ''}`}
+      className={cn(
+        'flex items-center gap-3 px-4 py-3 rounded-lg border shadow-lg min-w-[300px] max-w-md',
+        'animate-in slide-in-from-top-5 duration-300',
+        !isVisible && 'animate-out slide-out-to-top-5',
+        typeStyles[type]
+      )}
       role="alert"
       aria-live="polite"
     >
-      <div className={styles.iconWrapper}>
+      <div className="flex-shrink-0">
         {icon || defaultIcons[type]}
       </div>
       
-      <p className={styles.message}>{message}</p>
+      <p className="flex-1 text-sm font-medium">{message}</p>
       
       <button
         type="button"
-        className={styles.closeButton}
+        className="flex-shrink-0 p-1 hover:bg-black/5 rounded transition-colors"
         onClick={handleClose}
         aria-label="閉じる"
       >
@@ -154,8 +166,17 @@ export const ToastContainer: React.FC<ToastContainerProps> = ({
   onRemove,
   position = 'top-right',
 }) => {
+  const positionStyles = {
+    'top-right': 'top-4 right-4',
+    'top-left': 'top-4 left-4',
+    'bottom-right': 'bottom-4 right-4',
+    'bottom-left': 'bottom-4 left-4',
+    'top-center': 'top-4 left-1/2 -translate-x-1/2',
+    'bottom-center': 'bottom-4 left-1/2 -translate-x-1/2'
+  };
+
   const containerContent = (
-    <div className={`${styles.container} ${styles[position]}`}>
+    <div className={cn('fixed z-50 flex flex-col gap-2', positionStyles[position])}>
       {toasts.map((toast) => (
         <Toast
           key={toast.id}

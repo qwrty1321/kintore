@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/common/Button';
 import type { BodyProfile } from '@/types';
-import styles from './ProfileSummary.module.css';
 
 export interface ProfileSummaryProps {
   /** 表示するプロファイル */
@@ -83,21 +82,21 @@ export const ProfileSummary: React.FC<ProfileSummaryProps> = ({
 
   if (compact) {
     return (
-      <div className={styles.compactContainer}>
-        <div className={styles.compactStats}>
-          <div className={styles.compactStat}>
-            <span className={styles.compactValue}>{profile.height}</span>
-            <span className={styles.compactUnit}>cm</span>
+      <div className="flex items-center justify-between gap-4 p-4 bg-white rounded-lg border border-gray-200">
+        <div className="flex items-center gap-4">
+          <div className="text-center">
+            <span className="text-2xl font-bold text-gray-900">{profile.height}</span>
+            <span className="text-sm text-gray-500 ml-1">cm</span>
           </div>
-          <div className={styles.compactDivider} />
-          <div className={styles.compactStat}>
-            <span className={styles.compactValue}>{profile.weight}</span>
-            <span className={styles.compactUnit}>kg</span>
+          <div className="w-px h-8 bg-gray-200" />
+          <div className="text-center">
+            <span className="text-2xl font-bold text-gray-900">{profile.weight}</span>
+            <span className="text-sm text-gray-500 ml-1">kg</span>
           </div>
-          <div className={styles.compactDivider} />
-          <div className={styles.compactStat}>
-            <span className={styles.compactValue}>{profile.weeklyFrequency}</span>
-            <span className={styles.compactUnit}>回/週</span>
+          <div className="w-px h-8 bg-gray-200" />
+          <div className="text-center">
+            <span className="text-2xl font-bold text-gray-900">{profile.weeklyFrequency}</span>
+            <span className="text-sm text-gray-500 ml-1">回/週</span>
           </div>
         </div>
         {onEdit && (
@@ -115,12 +114,12 @@ export const ProfileSummary: React.FC<ProfileSummaryProps> = ({
   }
 
   return (
-    <div className={styles.container}>
+    <div className="space-y-6">
       {/* ヘッダー */}
-      <div className={styles.header}>
-        <div className={styles.headerContent}>
-          <h2 className={styles.title}>プロファイル</h2>
-          <p className={styles.updatedAt}>
+      <div className="flex items-start justify-between">
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900">プロファイル</h2>
+          <p className="text-sm text-gray-500 mt-1">
             {formatUpdatedAt(profile.updatedAt)}
           </p>
         </div>
@@ -136,71 +135,68 @@ export const ProfileSummary: React.FC<ProfileSummaryProps> = ({
       </div>
 
       {/* 主要指標 */}
-      <div className={styles.mainStats}>
-        <div className={styles.statCard}>
-          <div className={styles.statIcon} aria-hidden="true">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+          <div className="text-3xl mb-2" aria-hidden="true">
             📏
           </div>
-          <div className={styles.statContent}>
-            <p className={styles.statLabel}>身長</p>
-            <p className={styles.statValue}>
-              {profile.height}
-              <span className={styles.statUnit}>cm</span>
-            </p>
-          </div>
+          <p className="text-sm text-gray-600 mb-1">身長</p>
+          <p className="text-3xl font-bold text-gray-900">
+            {profile.height}
+            <span className="text-lg text-gray-500 ml-1">cm</span>
+          </p>
         </div>
 
-        <div className={styles.statCard}>
-          <div className={styles.statIcon} aria-hidden="true">
+        <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+          <div className="text-3xl mb-2" aria-hidden="true">
             ⚖️
           </div>
-          <div className={styles.statContent}>
-            <p className={styles.statLabel}>体重</p>
-            <p className={styles.statValue}>
-              {profile.weight}
-              <span className={styles.statUnit}>kg</span>
-            </p>
-          </div>
+          <p className="text-sm text-gray-600 mb-1">体重</p>
+          <p className="text-3xl font-bold text-gray-900">
+            {profile.weight}
+            <span className="text-lg text-gray-500 ml-1">kg</span>
+          </p>
         </div>
 
-        <div className={styles.statCard}>
-          <div className={styles.statIcon} aria-hidden="true">
+        <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+          <div className="text-3xl mb-2" aria-hidden="true">
             💪
           </div>
-          <div className={styles.statContent}>
-            <p className={styles.statLabel}>トレーニング頻度</p>
-            <p className={styles.statValue}>
-              {profile.weeklyFrequency}
-              <span className={styles.statUnit}>回/週</span>
-            </p>
-          </div>
+          <p className="text-sm text-gray-600 mb-1">トレーニング頻度</p>
+          <p className="text-3xl font-bold text-gray-900">
+            {profile.weeklyFrequency}
+            <span className="text-lg text-gray-500 ml-1">回/週</span>
+          </p>
         </div>
       </div>
 
       {/* BMI情報 */}
-      <div className={styles.bmiCard}>
-        <div className={styles.bmiHeader}>
-          <h3 className={styles.bmiTitle}>BMI</h3>
+      <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-semibold text-gray-900">BMI</h3>
           <span
-            className={styles.bmiCategory}
-            style={{ color: bmiCategory.color }}
+            className="px-3 py-1 rounded-full text-sm font-medium"
+            style={{ 
+              color: bmiCategory.color,
+              backgroundColor: `${bmiCategory.color}15`
+            }}
           >
             {bmiCategory.label}
           </span>
         </div>
-        <div className={styles.bmiValue}>
+        <div className="text-5xl font-bold text-gray-900 mb-2">
           {bmi.toFixed(1)}
         </div>
-        <p className={styles.bmiDescription}>
+        <p className="text-sm text-gray-600">
           Body Mass Index（体格指数）
         </p>
       </div>
 
       {/* 目標 */}
       {profile.goals && (
-        <div className={styles.goalsCard}>
-          <h3 className={styles.goalsTitle}>目標</h3>
-          <p className={styles.goalsText}>{profile.goals}</p>
+        <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-100">
+          <h3 className="text-lg font-semibold text-gray-900 mb-3">目標</h3>
+          <p className="text-gray-700">{profile.goals}</p>
         </div>
       )}
     </div>

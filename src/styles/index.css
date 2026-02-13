@@ -1,205 +1,38 @@
 /* ============================================
-   グローバルスタイル - Workout Tracker
+   Tailwind CSS - Workout Tracker
    ============================================ */
 
-@import './reset.css';
-@import './tokens.css';
-
-/* Google Fonts - Roboto */
+/* Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
-/* ============================================
-   ベーススタイル
-   ============================================ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-body {
-  font-family: var(--font-body);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-normal);
-  color: var(--color-text-primary);
-  background-color: var(--color-bg-primary);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* ============================================
-   タイポグラフィ
-   ============================================ */
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-display);
-  font-weight: var(--font-weight-normal);
-  line-height: var(--line-height-tight);
-  color: var(--color-text-primary);
-}
-
-h1 {
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-normal);
-  letter-spacing: -0.01em;
-}
-
-h2 {
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-normal);
-}
-
-h3 {
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-medium);
-}
-
-h4 {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-medium);
-}
-
-h5,
-h6 {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-medium);
-}
-
-/* ============================================
-   ユーティリティクラス
-   ============================================ */
-
-/* コンテナ */
-.container {
-  width: 100%;
-  max-width: var(--container-max-width);
-  margin-inline: auto;
-  padding-inline: var(--content-padding);
-}
-
-/* ビジュアルヘルパー */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
-}
-
-/* スクロールバーのスタイリング */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-border);
-  border-radius: var(--radius-full);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-border-strong);
-}
-
-/* ============================================
-   アニメーション定義
-   ============================================ */
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+@layer base {
+  body {
+    @apply font-sans text-gray-900 bg-white antialiased;
   }
-  to {
-    opacity: 1;
-  }
-}
 
-@keyframes fadeSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+  h1 {
+    @apply text-4xl font-normal tracking-tight;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-@keyframes fadeSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
+  h2 {
+    @apply text-3xl font-normal;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  h3 {
+    @apply text-2xl font-medium;
   }
-}
 
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
+  h4 {
+    @apply text-xl font-medium;
   }
-  to {
-    opacity: 1;
-    transform: scale(1);
+
+  h5, h6 {
+    @apply text-lg font-medium;
   }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -1000px 0;
-  }
-  100% {
-    background-position: 1000px 0;
-  }
-}
-
-/* ============================================
-   レスポンシブヘルパー
-   ============================================ */
-
-/* モバイルのみ表示 */
-@media (min-width: 1024px) {
-  .mobile-only {
-    display: none !important;
-  }
-}
-
-/* デスクトップのみ表示 */
-@media (max-width: 1023px) {
-  .desktop-only {
-    display: none !important;
-  }
-}
-
-/* ============================================
-   アクセシビリティ
-   ============================================ */
-
-/* タッチターゲットの最小サイズ確保 */
-button,
-a,
-input[type="checkbox"],
-input[type="radio"] {
-  min-width: 44px;
-  min-height: 44px;
-}
-
-/* フォーカス時のアウトライン強化 */
-:focus-visible {
-  outline: 2px solid var(--color-border-focus);
-  outline-offset: 2px;
 }
 
 /* モーション削減の対応 */
@@ -210,24 +43,5 @@ input[type="radio"] {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-}
-
-/* ============================================
-   印刷スタイル
-   ============================================ */
-
-@media print {
-  body {
-    background: white;
-    color: black;
-  }
-
-  .no-print {
-    display: none !important;
-  }
-
-  a[href]::after {
-    content: " (" attr(href) ")";
   }
 }

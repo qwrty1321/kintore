@@ -16,12 +16,14 @@
   "dependencies": {
     "browser-image-compression": "^2.0.2",
     "chart.js": "^4.4.7",
+    "clsx": "^2.1.1",
     "dexie": "^4.0.10",
     "dexie-react-hooks": "^1.1.7",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.3.0",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.28.0",
+    "tailwind-merge": "^3.4.0",
     "zustand": "^5.0.2"
   },
   "devDependencies": {
@@ -34,6 +36,7 @@
     "@typescript-eslint/parser": "^8.20.0",
     "@vitejs/plugin-react": "^4.3.4",
     "@vitest/ui": "^3.0.5",
+    "autoprefixer": "^10.4.24",
     "eslint": "^9.18.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.16",
@@ -41,6 +44,8 @@
     "fast-check": "^3.22.0",
     "gh-pages": "^6.3.0",
     "jsdom": "^26.0.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.19",
     "typescript": "^5.7.3",
     "vite": "^6.0.7",
     "vite-plugin-pwa": "^0.21.2",

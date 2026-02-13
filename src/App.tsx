@@ -10,14 +10,7 @@ const ProfilePage = lazy(() => import('./pages/ProfilePage').then(m => ({ defaul
 // ローディングフォールバック
 function LoadingFallback() {
   return (
-    <div style={{ 
-      display: 'flex', 
-      justifyContent: 'center', 
-      alignItems: 'center', 
-      minHeight: '400px',
-      fontFamily: 'var(--font-body)',
-      color: 'var(--color-text-secondary)'
-    }}>
+    <div className="flex justify-center items-center min-h-[400px] text-gray-500">
       読み込み中...
     </div>
   );

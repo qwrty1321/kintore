@@ -4,7 +4,6 @@ import { Button } from '@/components/common/Button';
 import { useProfileStore } from '@/stores/profileStore';
 import { validateBodyProfile } from '@/utils/validation';
 import type { BodyProfile } from '@/types';
-import styles from './ProfileForm.module.css';
 
 export interface ProfileFormProps {
   /** 既存のプロファイル（編集モード） */
@@ -205,17 +204,17 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
   };
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit} noValidate>
-      <div className={styles.header}>
-        <h2 className={styles.title}>
+    <form className="space-y-6" onSubmit={handleSubmit} noValidate>
+      <div className="space-y-2">
+        <h2 className="text-2xl font-bold text-gray-900">
           {profile ? 'プロファイルを編集' : 'プロファイルを作成'}
         </h2>
-        <p className={styles.description}>
+        <p className="text-gray-600">
           あなたの身体情報を入力してください。類似したユーザーとの比較に使用されます。
         </p>
       </div>
 
-      <div className={styles.fields}>
+      <div className="space-y-4">
         {/* 身長 */}
         <Input
           label="身長"
@@ -230,7 +229,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
           min={100}
           max={250}
           step={0.1}
-          rightIcon={<span className={styles.unit}>cm</span>}
+          rightIcon={<span className="text-sm text-gray-500">cm</span>}
         />
 
         {/* 体重 */}
@@ -247,7 +246,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
           min={30}
           max={300}
           step={0.1}
-          rightIcon={<span className={styles.unit}>kg</span>}
+          rightIcon={<span className="text-sm text-gray-500">kg</span>}
         />
 
         {/* 週あたりのトレーニング頻度 */}
@@ -264,24 +263,24 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
           min={0}
           max={14}
           step={1}
-          rightIcon={<span className={styles.unit}>回/週</span>}
+          rightIcon={<span className="text-sm text-gray-500">回/週</span>}
         />
 
         {/* 目標（オプション） */}
-        <div className={styles.textareaWrapper}>
-          <label htmlFor="goals" className={styles.label}>
+        <div className="space-y-1.5">
+          <label htmlFor="goals" className="text-sm font-medium text-gray-700">
             目標（オプション）
           </label>
           <textarea
             id="goals"
-            className={styles.textarea}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
             value={goals}
             onChange={(e) => setGoals(e.target.value)}
             placeholder="例: 筋力アップ、体重減少、健康維持など"
             rows={3}
             maxLength={200}
           />
-          <p className={styles.helperText}>
+          <p className="text-sm text-gray-500">
             {goals.length}/200文字
           </p>
         </div>
@@ -289,13 +288,13 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({
 
       {/* ストアのエラーメッセージ */}
       {error && (
-        <div className={styles.errorBanner} role="alert">
+        <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800" role="alert">
           {error}
         </div>
       )}
 
       {/* アクションボタン */}
-      <div className={styles.actions}>
+      <div className="flex gap-3 justify-end">
         {onCancel && (
           <Button
             type="button"

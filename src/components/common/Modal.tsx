@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import styles from './Modal.module.css';
+import { cn } from '@/utils/cn';
 
 export interface ModalProps {
   /** モーダルの表示状態 */
@@ -129,24 +129,37 @@ export const Modal: React.FC<ModalProps> = ({
     }
   };
 
+  const sizeClasses = {
+    sm: 'max-w-md',
+    md: 'max-w-lg',
+    lg: 'max-w-2xl',
+    full: 'max-w-full mx-4'
+  };
+
   const modalContent = (
-    <div className={styles.backdrop} onClick={handleBackdropClick}>
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in duration-200" 
+      onClick={handleBackdropClick}
+    >
       <div
         ref={modalRef}
-        className={`${styles.modal} ${styles[size]}`}
+        className={cn(
+          'relative w-full bg-white rounded-xl shadow-xl animate-in zoom-in-95 duration-200',
+          sizeClasses[size]
+        )}
         role="dialog"
         aria-modal="true"
         aria-labelledby={title ? 'modal-title' : undefined}
       >
         {/* ヘッダー */}
         {title && (
-          <div className={styles.header}>
-            <h2 id="modal-title" className={styles.title}>
+          <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
+            <h2 id="modal-title" className="text-xl font-semibold text-gray-900">
               {title}
             </h2>
             <button
               type="button"
-              className={styles.closeButton}
+              className="p-1 text-gray-400 hover:text-gray-600 transition-colors rounded-lg hover:bg-gray-100"
               onClick={onClose}
               aria-label="閉じる"
             >
@@ -170,10 +183,14 @@ export const Modal: React.FC<ModalProps> = ({
         )}
 
         {/* コンテンツ */}
-        <div className={styles.content}>{children}</div>
+        <div className="px-6 py-4">{children}</div>
 
         {/* フッター */}
-        {footer && <div className={styles.footer}>{footer}</div>}
+        {footer && (
+          <div className="px-6 py-4 border-t border-gray-200 bg-gray-50 rounded-b-xl">
+            {footer}
+          </div>
+        )}
       </div>
     </div>
   );

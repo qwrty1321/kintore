@@ -3,7 +3,6 @@ import { ProfileSummary } from '@/components/profile/ProfileSummary';
 import { ProfileForm } from '@/components/profile/ProfileForm';
 import { useProfileStore } from '@/stores/profileStore';
 import type { BodyProfile } from '@/types';
-import styles from './ProfilePage.module.css';
 
 /**
  * プロファイルページ
@@ -43,21 +42,23 @@ export const ProfilePage: React.FC = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.content}>
+    <div className="min-h-screen bg-gray-50 py-8 px-4">
+      <div className="max-w-4xl mx-auto">
         {isEditing ? (
-          <ProfileForm
-            profile={profile}
-            onSuccess={handleSuccess}
-            onCancel={handleCancel}
-            submitText="保存"
-          />
+          <div className="bg-white rounded-xl shadow-sm p-6">
+            <ProfileForm
+              profile={profile}
+              onSuccess={handleSuccess}
+              onCancel={handleCancel}
+              submitText="保存"
+            />
+          </div>
         ) : profile ? (
           <ProfileSummary profile={profile} onEdit={handleEdit} />
         ) : (
-          <div className={styles.empty}>
-            <h2 className={styles.emptyTitle}>プロファイルが見つかりません</h2>
-            <p className={styles.emptyDescription}>
+          <div className="bg-white rounded-xl shadow-sm p-8 text-center">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">プロファイルが見つかりません</h2>
+            <p className="text-gray-600 mb-8">
               プロファイルを作成して、トレーニングを始めましょう。
             </p>
             <ProfileForm

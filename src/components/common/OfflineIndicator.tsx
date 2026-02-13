@@ -6,7 +6,6 @@
  */
 
 import { useOfflineStatus } from '@/hooks/useOfflineStatus';
-import styles from './OfflineIndicator.module.css';
 
 export function OfflineIndicator() {
   const { isOnline } = useOfflineStatus();
@@ -16,9 +15,13 @@ export function OfflineIndicator() {
   }
 
   return (
-    <div className={styles.indicator} role="status" aria-live="polite">
-      <span className={styles.icon}>📡</span>
-      <span className={styles.text}>オフラインモード</span>
+    <div 
+      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 flex items-center gap-2 px-4 py-2 bg-yellow-50 text-yellow-800 border border-yellow-200 rounded-lg shadow-lg"
+      role="status" 
+      aria-live="polite"
+    >
+      <span className="text-lg">📡</span>
+      <span className="text-sm font-medium">オフラインモード</span>
     </div>
   );
 }

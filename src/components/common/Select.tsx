@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Select.module.css';
+import { cn } from '@/utils/cn';
 
 export interface SelectOption {
   value: string;
@@ -54,39 +54,29 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     const errorId = `${selectId}-error`;
     const helperId = `${selectId}-helper`;
 
-    const wrapperClassNames = [
-      styles.wrapper,
-      fullWidth && styles.fullWidth,
-      className,
-    ]
-      .filter(Boolean)
-      .join(' ');
-
-    const selectClassNames = [
-      styles.select,
-      error && styles.error,
-    ]
-      .filter(Boolean)
-      .join(' ');
-
     return (
-      <div className={wrapperClassNames}>
+      <div className={cn('flex flex-col gap-1.5', fullWidth && 'w-full', className)}>
         {label && (
-          <label htmlFor={selectId} className={styles.label}>
+          <label htmlFor={selectId} className="text-sm font-medium text-gray-700">
             {label}
             {required && (
-              <span className={styles.required} aria-label="必須">
+              <span className="ml-1 text-red-500" aria-label="必須">
                 *
               </span>
             )}
           </label>
         )}
         
-        <div className={styles.selectWrapper}>
+        <div className="relative">
           <select
             ref={ref}
             id={selectId}
-            className={selectClassNames}
+            className={cn(
+              'w-full px-3 py-2 pr-10 border rounded-lg appearance-none transition-colors',
+              'focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent',
+              'disabled:bg-gray-100 disabled:cursor-not-allowed',
+              error ? 'border-red-500' : 'border-gray-300'
+            )}
             disabled={disabled}
             required={required}
             aria-invalid={error ? 'true' : 'false'}
@@ -112,7 +102,7 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
           </select>
           
           {/* カスタム矢印アイコン */}
-          <span className={styles.icon} aria-hidden="true">
+          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" aria-hidden="true">
             <svg
               width="20"
               height="20"
@@ -132,13 +122,13 @@ export const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         </div>
 
         {error && (
-          <p id={errorId} className={styles.errorText} role="alert">
+          <p id={errorId} className="text-sm text-red-500" role="alert">
             {error}
           </p>
         )}
         
         {!error && helperText && (
-          <p id={helperId} className={styles.helperText}>
+          <p id={helperId} className="text-sm text-gray-500">
             {helperText}
           </p>
         )}

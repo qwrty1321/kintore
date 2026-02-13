@@ -7,7 +7,6 @@ import { useState, useEffect } from 'react';
 import { ProgressChart } from '@/components/chart';
 import { useWorkoutStore } from '@/stores/workoutStore';
 import type { ChartAxis } from '@/types';
-import styles from './ProgressPage.module.css';
 
 export function ProgressPage() {
   const { workouts, loadWorkouts } = useWorkoutStore();
@@ -18,40 +17,42 @@ export function ProgressPage() {
   }, [loadWorkouts]);
 
   return (
-    <div className={styles.container}>
-      <header className={styles.header}>
-        <h1 className={styles.title}>進捗グラフ</h1>
-        <p className={styles.subtitle}>
-          トレーニングの進捗を可視化して、成長を実感しましょう
-        </p>
-      </header>
+    <div className="min-h-screen bg-gray-50 py-8 px-4">
+      <div className="max-w-6xl mx-auto">
+        <header className="mb-8">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">進捗グラフ</h1>
+          <p className="text-gray-600">
+            トレーニングの進捗を可視化して、成長を実感しましょう
+          </p>
+        </header>
 
-      <div className={styles.chartContainer}>
-        <ProgressChart
-          workouts={workouts}
-          axis={axis}
-          onAxisChange={setAxis}
-        />
-      </div>
+        <div className="bg-white rounded-xl shadow-sm p-6 mb-6">
+          <ProgressChart
+            workouts={workouts}
+            axis={axis}
+            onAxisChange={setAxis}
+          />
+        </div>
 
-      <div className={styles.stats}>
-        <div className={styles.statCard}>
-          <span className={styles.statValue}>{workouts.length}</span>
-          <span className={styles.statLabel}>総トレーニング数</span>
-        </div>
-        <div className={styles.statCard}>
-          <span className={styles.statValue}>
-            {new Set(workouts.map(w => w.bodyPart)).size}
-          </span>
-          <span className={styles.statLabel}>トレーニング部位</span>
-        </div>
-        <div className={styles.statCard}>
-          <span className={styles.statValue}>
-            {new Set(workouts.map(w => 
-              new Date(w.date).toLocaleDateString()
-            )).size}
-          </span>
-          <span className={styles.statLabel}>トレーニング日数</span>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-white rounded-xl shadow-sm p-6 text-center">
+            <div className="text-4xl font-bold text-blue-600 mb-2">{workouts.length}</div>
+            <div className="text-sm text-gray-600">総トレーニング数</div>
+          </div>
+          <div className="bg-white rounded-xl shadow-sm p-6 text-center">
+            <div className="text-4xl font-bold text-blue-600 mb-2">
+              {new Set(workouts.map(w => w.bodyPart)).size}
+            </div>
+            <div className="text-sm text-gray-600">トレーニング部位</div>
+          </div>
+          <div className="bg-white rounded-xl shadow-sm p-6 text-center">
+            <div className="text-4xl font-bold text-blue-600 mb-2">
+              {new Set(workouts.map(w => 
+                new Date(w.date).toLocaleDateString()
+              )).size}
+            </div>
+            <div className="text-sm text-gray-600">トレーニング日数</div>
+          </div>
         </div>
       </div>
     </div>
