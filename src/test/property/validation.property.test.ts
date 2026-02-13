@@ -9,13 +9,12 @@ import { describe, it, expect } from 'vitest';
 import fc from 'fast-check';
 import { 
   validateWorkoutRecord, 
-  validateWorkoutSet,
   validateBodyProfile,
   VALIDATION_CONSTRAINTS 
 } from '@/utils/validation';
-import type { WorkoutRecord, WorkoutSet, BodyProfile, BodyPart } from '@/types';
+import type { WorkoutRecord, BodyProfile, BodyPart } from '@/types';
 
-const { PROFILE_CONSTRAINTS, WORKOUT_CONSTRAINTS, BODY_PARTS } = VALIDATION_CONSTRAINTS;
+const { PROFILE_CONSTRAINTS, BODY_PARTS } = VALIDATION_CONSTRAINTS;
 
 /**
  * Arbitrary: 無効なトレーニングデータの生成

@@ -38,7 +38,7 @@ export const ProfilePage: React.FC = () => {
   /**
    * 保存成功時
    */
-  const handleSuccess = (updatedProfile: BodyProfile) => {
+  const handleSuccess = (_updatedProfile: BodyProfile) => {
     setIsEditing(false);
   };
 

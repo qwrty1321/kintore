@@ -9,7 +9,7 @@
  * **要件: 4.3、4.4**
  */
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import type { WorkoutFilter, BodyPart } from '@/types';
 import { Select } from '@/components/common/Select';
 import { Input } from '@/components/common/Input';

@@ -2,7 +2,7 @@
  * PresetSelector - 使用例
  */
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { PresetSelector } from './PresetSelector';
 import type { Preset, WorkoutSet } from '@/types';
 

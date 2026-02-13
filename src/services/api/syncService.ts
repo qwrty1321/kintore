@@ -9,7 +9,7 @@
  * - 9.2: ネットワーク接続が回復した場合、未送信のデータを自動的にサーバーに同期
  */
 
-import type { AnonymousDataPayload, WorkoutRecord, BodyProfile } from '@/types';
+import type { WorkoutRecord, BodyProfile } from '@/types';
 import { sendAnonymousData, ApiError } from './apiClient';
 import { createAnonymousPayload } from './anonymizationService';
 import {

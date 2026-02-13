@@ -2,7 +2,7 @@
  * 画像処理サービスのテスト
  */
 
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import {
   isValidImageFormat,
   validateImageFile,

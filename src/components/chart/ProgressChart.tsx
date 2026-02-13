@@ -307,7 +307,7 @@ function ProgressChartComponent({ workouts, axis, onAxisChange }: ProgressChartP
             <p className={styles.emptyHint}>トレーニング記録を追加してください</p>
           </div>
         ) : (
-          <Line data={chartData} options={options} />
+          <Line data={chartData} options={options as any} />
         )}
       </div>
     </div>

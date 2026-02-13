@@ -103,7 +103,7 @@ export const ProfileSummary: React.FC<ProfileSummaryProps> = ({
         {onEdit && (
           <Button
             variant="outline"
-            size="small"
+            size="sm"
             onClick={onEdit}
             aria-label="プロファイルを編集"
           >

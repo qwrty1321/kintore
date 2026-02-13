@@ -6,7 +6,7 @@
  */
 
 import imageCompression from 'browser-image-compression';
-import type { WorkoutImage } from '@/types';
+// import type { WorkoutImage } from '@/types';
 
 // ============================================
 // 定数

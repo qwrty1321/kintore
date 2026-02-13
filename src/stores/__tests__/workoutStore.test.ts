@@ -2,7 +2,7 @@
  * workoutStoreのユニットテスト
  */
 
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { useWorkoutStore } from '../workoutStore';
 import type { WorkoutRecord } from '@/types';
 

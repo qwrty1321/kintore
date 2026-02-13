@@ -2,7 +2,7 @@
  * Vitestテストセットアップ
  */
 
-import { expect, afterEach, beforeAll } from 'vitest';
+import { afterEach, beforeAll } from 'vitest';
 import { cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Dexie from 'dexie';
@@ -14,8 +14,8 @@ afterEach(() => {
 });
 
 // グローバルなモック設定
-if (!global.crypto.randomUUID) {
-  Object.defineProperty(global.crypto, 'randomUUID', {
+if (!(globalThis as any).crypto.randomUUID) {
+  Object.defineProperty((globalThis as any).crypto, 'randomUUID', {
     value: () => Math.random().toString(36).substring(2, 15),
     writable: true,
     configurable: true,

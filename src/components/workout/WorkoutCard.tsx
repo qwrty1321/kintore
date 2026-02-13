@@ -76,7 +76,7 @@ export const WorkoutCard: React.FC<WorkoutCardProps> = ({
 
   const [images, setImages] = useState<WorkoutImage[]>([]);
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
-  const [isLoadingImages, setIsLoadingImages] = useState(false);
+  const [, setIsLoadingImages] = useState(false);
   const [isSharing, setIsSharing] = useState(false);
 
   const { loadImagesByWorkoutId } = useImageStore();
@@ -112,7 +112,7 @@ export const WorkoutCard: React.FC<WorkoutCardProps> = ({
   );
   const totalReps = workout.sets.reduce((sum, set) => sum + set.reps, 0);
   const maxWeight = Math.max(...workout.sets.map(s => s.weight));
-  const avgWeight = workout.sets.reduce((sum, set) => sum + set.weight, 0) / workout.sets.length;
+  // const avgWeight = workout.sets.reduce((sum, set) => sum + set.weight, 0) / workout.sets.length;
 
   const formattedDate = new Date(workout.date).toLocaleDateString('ja-JP', {
     year: 'numeric',

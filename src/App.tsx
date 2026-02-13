@@ -4,11 +4,8 @@ import { AppLayout } from './components/layout';
 import { OfflineIndicator } from './components/common/OfflineIndicator';
 
 // コード分割: React.lazyでルートベースの分割
-const HomePage = lazy(() => import('./pages/HomePage'));
-const WorkoutsPage = lazy(() => import('./pages/WorkoutsPage'));
-const ProgressPage = lazy(() => import('./pages/ProgressPage'));
-const ComparePage = lazy(() => import('./pages/ComparePage'));
-const ProfilePage = lazy(() => import('./pages/ProfilePage'));
+const ProgressPage = lazy(() => import('./pages/ProgressPage').then(m => ({ default: m.ProgressPage })));
+const ProfilePage = lazy(() => import('./pages/ProfilePage').then(m => ({ default: m.ProfilePage })));
 
 // ローディングフォールバック
 function LoadingFallback() {
@@ -38,10 +35,8 @@ function App() {
         <OfflineIndicator />
         <Suspense fallback={<LoadingFallback />}>
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/workouts" element={<WorkoutsPage />} />
+            <Route path="/" element={<ProgressPage />} />
             <Route path="/progress" element={<ProgressPage />} />
-            <Route path="/compare" element={<ComparePage />} />
             <Route path="/profile" element={<ProfilePage />} />
           </Routes>
         </Suspense>

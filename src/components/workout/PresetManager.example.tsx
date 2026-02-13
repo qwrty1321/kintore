@@ -4,7 +4,7 @@
  * このファイルは、PresetManagerコンポーネントの使用方法を示すサンプルです。
  */
 
-import React from 'react';
+// import React from 'react';
 import { PresetManager } from './PresetManager';
 import type { Preset } from '@/types';
 

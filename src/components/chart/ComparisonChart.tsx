@@ -199,7 +199,7 @@ function ComparisonChartComponent({
   }
 
   // データがない場合
-  if (!chartData) {
+  if (!chartData || !comparisonData) {
     return (
       <div className={styles.container}>
         <div className={styles.emptyState}>

@@ -9,7 +9,6 @@ import {
   validateBodyProfile,
   isInRange,
   isNonEmptyString,
-  VALIDATION_CONSTRAINTS
 } from './validation';
 import type { WorkoutRecord, WorkoutSet, BodyProfile } from '../types';
 

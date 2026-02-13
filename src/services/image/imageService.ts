@@ -5,7 +5,7 @@
  * 要件: 3A.1、3A.2、3A.3、3A.4、3A.5、3A.6
  */
 
-import { processImage, type ProcessImageResult } from './imageProcessor';
+import { processImage } from './imageProcessor';
 import {
   saveImage,
   getImage,

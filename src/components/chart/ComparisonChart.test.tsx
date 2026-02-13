@@ -22,7 +22,7 @@ vi.mock('react-chartjs-2', () => ({
 /**
  * テスト用の比較データ
  */
-const mockComparparisonData = {
+const mockComparisonData: ComparisonData = {
   bodyPart: 'chest',
   exerciseName: 'ベンチプレス',
   statistics: {
@@ -63,7 +63,7 @@ describe('ComparisonChart', () => {
     it('期間情報が表示される', () => {
       render(
         <ComparisonChart
-          onData={mockComparisonData}
+          comparisonData={mockComparisonData}
           userValue={80}
         />
       );
@@ -104,7 +104,7 @@ describe('ComparisonChart', () => {
       render(
         <ComparisonChart
           comparisonData={mockComparisonData}
- userValue={80}
+          userValue={80}
         />
       );
 
@@ -124,7 +124,7 @@ describe('ComparisonChart', () => {
       const chartData = JSON.parse(chartDataElement.textContent || '{}');
 
       // すべての統計値が含まれることを確認
-      expect(rtData.datasets[0].data).toEqual([
+      expect(chartData.datasets[0].data).toEqual([
         60.0,  // 25%ile
         72.0,  // 中央値
         75.5,  // 平均
@@ -150,7 +150,7 @@ describe('ComparisonChart', () => {
       );
 
       // データ不足メッセージが表示される
-      expet('データ不足')).toBeInTheDocument();
+      expect(screen.getByText('データ不足')).toBeInTheDocument();
       expect(screen.getByText(/類似したユーザーのデータが不足しています/)).toBeInTheDocument();
       expect(screen.getByText(/10人以上のデータが必要です/)).toBeInTheDocument();
 
@@ -191,7 +191,10 @@ describe('ComparisonChart', () => {
 
       // データ不足メッセージが表示される
       expect(screen.getByText('データ不足')).toBeInTheDocument();
-describe('アクセシビリティ', () => {
+    });
+  });
+
+  describe('アクセシビリティ', () => {
     it('適切なセマンティックHTMLが使用される', () => {
       render(
         <ComparisonChart
@@ -202,18 +205,6 @@ describe('アクセシビリティ', () => {
 
       // h3タグが使用される
       expect(screen.getByRole('heading', { level: 3 })).toBeInTheDocument();
-    });
-  });
-});
-データがない場合、空の状態メッセージが表示される', () => {
-      render(
-        <ComparisonChart
-          comparisonData={null}
-          userValue={0}
-        />
-      );
-
-      expect(screen.getByText('データ不足')).toBeInTheDocument();
     });
   });
 
@@ -228,9 +219,6 @@ describe('アクセシビリティ', () => {
 
       expect(screen.getByText(/身長±5cm、体重±5kg、週頻度±1回/)).toBeInTheDocument();
     });
-  });
-
-      });
   });
 
   describe('ローディング状態', () => {
@@ -249,4 +237,15 @@ describe('アクセシビリティ', () => {
   });
 
   describe('空の状態', () => {
-    it('
+    it('データがない場合、空の状態メッセージが表示される', () => {
+      render(
+        <ComparisonChart
+          comparisonData={null}
+          userValue={0}
+        />
+      );
+
+      expect(screen.getByText('データ不足')).toBeInTheDocument();
+    });
+  });
+});

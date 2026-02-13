@@ -7,7 +7,7 @@ import { sendAnonymousData, healthCheck, ApiError } from './apiClient';
 import type { AnonymousDataPayload } from '@/types';
 
 // グローバルfetchをモック
-global.fetch = vi.fn();
+(globalThis as any).fetch = vi.fn();
 
 describe('apiClient', () => {
   beforeEach(() => {

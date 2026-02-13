@@ -3,7 +3,7 @@
  * Feature: workout-tracker
  */
 
-import { describe, it, beforeEach } from 'vitest';
+import { describe, it, beforeEach, expect } from 'vitest';
 import fc from 'fast-check';
 import { saveWorkout, getWorkout } from '../workoutDB';
 import { db } from '../schema';

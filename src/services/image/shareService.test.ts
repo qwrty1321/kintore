@@ -5,7 +5,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import {
   isShareSupported,
-  isFileShareSupported,
   generateShareText,
   shareWorkoutText,
 } from './shareService';
@@ -40,9 +39,9 @@ function createTestWorkout(): WorkoutRecord {
 describe('isShareSupported', () => {
   it('navigator.shareが存在する場合、trueを返す', () => {
     // jsdomではnavigator.shareは存在しないため、モックが必要
-    const originalNavigator = global.navigator;
+    const originalNavigator = (globalThis as any).navigator;
     
-    Object.defineProperty(global, 'navigator', {
+    Object.defineProperty(globalThis, 'navigator', {
       value: { share: vi.fn() },
       writable: true,
       configurable: true,
@@ -51,7 +50,7 @@ describe('isShareSupported', () => {
     expect(isShareSupported()).toBe(true);
 
     // 元に戻す
-    Object.defineProperty(global, 'navigator', {
+    Object.defineProperty(globalThis, 'navigator', {
       value: originalNavigator,
       writable: true,
       configurable: true,
@@ -143,7 +142,7 @@ describe('shareWorkoutText', () => {
     const workout = createTestWorkout();
     const mockShare = vi.fn().mockResolvedValue(undefined);
 
-    Object.defineProperty(global, 'navigator', {
+    Object.defineProperty(globalThis, 'navigator', {
       value: { share: mockShare },
       writable: true,
       configurable: true,
@@ -166,7 +165,7 @@ describe('shareWorkoutText', () => {
     abortError.name = 'AbortError';
     const mockShare = vi.fn().mockRejectedValue(abortError);
 
-    Object.defineProperty(global, 'navigator', {
+    Object.defineProperty(globalThis, 'navigator', {
       value: { share: mockShare },
       writable: true,
       configurable: true,
@@ -179,7 +178,7 @@ describe('shareWorkoutText', () => {
     const workout = createTestWorkout();
     const mockWriteText = vi.fn().mockResolvedValue(undefined);
 
-    Object.defineProperty(global, 'navigator', {
+    Object.defineProperty(globalThis, 'navigator', {
       value: {
         clipboard: { writeText: mockWriteText },
       },

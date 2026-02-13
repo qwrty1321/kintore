@@ -63,7 +63,6 @@ export const WorkoutList: React.FC<WorkoutListProps> = ({
 
   const {
     workouts,
-    filter,
     isLoading,
     error,
     loadWorkouts,

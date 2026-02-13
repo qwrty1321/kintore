@@ -8,14 +8,10 @@ import { describe, it, expect } from 'vitest';
 import fc from 'fast-check';
 import { 
   hashUserId,
-  anonymizeWorkout,
   createAnonymousPayload,
   validateAnonymousPayload 
 } from '@/services/api/anonymizationService';
 import { 
-  calculateMean,
-  calculateMedian,
-  calculatePercentile,
   calculateStatistics 
 } from '@/services/calculations/statistics';
 import type { WorkoutRecord, BodyProfile, BodyPart, WorkoutSet } from '@/types';
@@ -311,7 +307,7 @@ describe('Feature: workout-tracker, Property 23: 同期失敗時のキューイ�
           // 同期失敗をシミュレート
           const failedWorkout: WorkoutRecord = {
             ...workout,
-            syncStatus: fc.sample(fc.constantFrom('pending', 'failed'), 1)[0],
+            syncStatus: fc.sample(fc.constantFrom('pending' as const, 'failed' as const), 1)[0],
           };
           
           // syncStatusがpendingまたはfailedであることを確認

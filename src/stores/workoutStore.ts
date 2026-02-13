@@ -13,7 +13,6 @@ import {
   getFilteredWorkouts,
   updateWorkout,
   deleteWorkout,
-  getWorkoutsByUserId,
 } from '@/services/db/workoutDB';
 import { validateWorkoutRecord } from '@/utils/validation';
 

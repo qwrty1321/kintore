@@ -142,7 +142,7 @@ export const RMCalculator: React.FC<RMCalculatorProps> = ({
   // パーセンテージ選択
   // ============================================
 
-  const handlePercentageSelect = useCallback((percentage: number, value: number) => {
+  const handlePercentageSelect = useCallback((percentage: number, _value: number) => {
     setSelectedPercentage(percentage);
   }, []);
 
