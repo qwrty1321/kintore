@@ -5,8 +5,8 @@
 @import './reset.css';
 @import './tokens.css';
 
-/* Google Fonts - Outfit（ディスプレイ用） */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
+/* Google Fonts - Poppins & Inter */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
 /* ============================================
    ベーススタイル
@@ -19,6 +19,8 @@ body {
   color: var(--color-text-primary);
   background-color: var(--color-bg-primary);
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* ============================================
@@ -38,25 +40,31 @@ h6 {
 }
 
 h1 {
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-extrabold);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.02em;
 }
 
 h2 {
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.01em;
 }
 
 h3 {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
 }
 
 h4 {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
 }
 
 h5,
 h6 {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
 }
 
 /* ============================================
@@ -86,21 +94,21 @@ h6 {
 
 /* スクロールバーのスタイリング */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-bg-secondary);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-neutral-400);
+  background: var(--color-border);
   border-radius: var(--radius-full);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-neutral-500);
+  background: var(--color-border-strong);
 }
 
 /* ============================================
@@ -193,7 +201,17 @@ input[type="radio"] {
 :focus-visible {
   outline: 2px solid var(--color-border-focus);
   outline-offset: 2px;
-  border-radius: var(--radius-sm);
+}
+
+/* モーション削減の対応 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* ============================================
